@@ -2,11 +2,11 @@
 Solutions to home day 1 problems
 
 STRUCTURE OF REPOSITORY:
-  This repository contains four folders, three of them containing solutions to tasks for home day 1:
-    * Data-Types: Contains the solution to, and test for, the Data Types lab
-    * Get-Primes: Contains the solution to, and test for, the Get Primes lab
-    * EmployeeOOP: Contains the implementation and test for the day's learning outcome: object-oriented programming
-    ~ CarOOP: Contains the solution to pass the provided tests for the car oop lab
+This repository contains four folders, three of them containing solutions to tasks for home day 1:
+   1. Data-Types: Contains the solution to, and test for, the Data Types lab
+   2. Get-Primes: Contains the solution to, and test for, the Get Primes lab
+   3. EmployeeOOP: Contains the implementation and test for the day's learning outcome: object-oriented programming
+   4. CarOOP: Contains the solution to pass the provided tests for the car oop lab
 
 TO USE:
 
