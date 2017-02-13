@@ -1,24 +1,5 @@
-/**
-	The getPrimes function returns an array containing the list of prime numbers between 0 and
-	the number supplied to it as an argument.
-
-	In the best-case scenario, i.e. when the provided argument is less than 11, the algorithm for the
-	getPrimes function runs in O(1) because the only thing happening is pushing a preset list of numbers
-	into an empty array.
-
-	However, when the number is larger than, or equal to, 11, the following operations are performed:
-		1. A push operation -- 1
-		2. A for loop that starts at 11 until the number and goes in steps of 2, so that only odd numbers
-			 are tested -- (Math.floor((n - 11) / 2) + 1. E.g., for 25 and 26, only 8 (11, 13, 15, 17, 19, 21, 23, 25) numbers
-			 are looped over.
-
-		The function, at this point, grows at:
-			1 + ( (Math.floor((n - 11) / 2) + 1) ) This is the worst-case scenario.
-
-		Disregarding the constants and only taking the part of the equation that grows most as n (size of input) tends
-		towards infinity, we say:
-			The getPrimes function's order of growth is O(n) i.e. linear growth
-*/
+// The getPrimes function returns an array containing the list of prime numbers between 0 and
+// the number supplied to it as an argument.
 
 function getPrimes(number) {
 	if (typeof(number) !== 'number') {
@@ -33,47 +14,38 @@ function getPrimes(number) {
 		return [];
 	}
 
-  var listOfPrimes = [];
+  var listOfPrimes = [2];
 
-/**
- For any number less than 11, there are only 4 (2, 3, 5, 7) prime numbers.
- If we're supplied with such a number, we just produce [2], [2, 3], [2, 3, 5] or [2, 3, 5, 7],
- depending on the size of the number as thus:
-*/
-  if (number === 2) {
-  	listOfPrimes.push(2);
-  }
+	// This loop runs in O(n/2) because it only loops over odd numbers on its way to number.
+	// For 21, that's [3, 5, 7, 9, 11, 13, 15, 17, 19, 21]. No need to test for even numbers above 3.
+	// They're definitely not prime
+	for (var i = 3; i <= number; i += 2){
+			var isPrime = true;
+			var squareRootOfI = Math.sqrt(i);
 
-  else if (number > 2 && number < 5 ) {
-  	listOfPrimes.push(2, 3);
-  }
+			// To avoid looping all the way to i and dividing it with the numbers on the way to it, e.g. for 9,
+			// instead of looping from 2 or 3 to 9 and dividing it by [2, 3, 4, 5, 6, 7, 8], we just test for its square root.
+			// For 9, it is 3, for 121, it is 11, for 221, it is 14.8. If no number before it's square root can divide it, then it
+			// is a prime number.
+			// To make the algorithm even faster, we only loop on odd numbers on the way to the square root of i.
+			// So, for 121, j below is [3, 5, 7, 9, 11, 13].
+			for (var j = 3; j <= squareRootOfI; j += 2) {
+				
+				// This inner loop runs in (n ^ 0.5)/2
+				// The two loops therefore run in n/2 * (n ^ 0.5)/2
+				// Disregarding constants, the two loops run in O(n^2)
+				if(i % j === 0) {
+					isPrime = false;
+				}
+			}
 
-  else if (number >= 5 && number < 7) {
-  	listOfPrimes.push(2, 3, 5);
-  }
-
-  else if (number >= 7) {
-  	listOfPrimes.push(2, 3, 5, 7);
-
-		/**
-		 However, for a number that's greater than, or equal to, 11, a loop is started from 11 until that number
-		 and it goes in steps of 2 so as to test for odd numbers only. For each odd number, we test if it is divisible
-		 by either of 2, 3, 5, 7 and 9 and also if its square root is an integer, e.g. 121. If it doesn't satisfy any of
-		 these conditions, it is a prime number and is pushed into listOfPrimes.
-		*/
-	  for (var i = 11; i <= number; i += 2) {
-	  		if (i % 2 !== 0
-	          && i % 3 !== 0
-						&& i % 5 !== 0
-						&& i % 7 !== 0
-						&& i % 9 !== 0
-	          && Math.sqrt(i) % 1 !== 0) {
-	  			listOfPrimes.push(i);
-	  		}
-	  	}
-  }
-
-  return listOfPrimes;
+		if (isPrime) {
+			listOfPrimes.push(i);
+		}
+	}
+	return listOfPrimes;
 }
 
+// All other operations apart from the loops run in O(1), so we say this
+// algorithm runs in O(n^2) i.e. quadratic time
 module.exports = getPrimes;
