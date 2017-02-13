@@ -33,7 +33,7 @@ function getPrimes(number) {
 		return [];
 	}
 
-  listOfPrimes = [];
+  var listOfPrimes = [];
 
 /**
  For any number less than 11, there are only 4 (2, 3, 5, 7) prime numbers.
