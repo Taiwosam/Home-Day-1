@@ -1,0 +1,22 @@
+{
+  "name": "home-day-1",
+  "version": "1.0.0",
+  "description": "Solutions to home day 1 problems",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Taiwosam/Home-Day-1.git"
+  },
+  "author": "Taiwo Adedotun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Taiwosam/Home-Day-1/issues"
+  },
+  "homepage": "https://github.com/Taiwosam/Home-Day-1#readme",
+  "dependencies": {
+    "jasmine-node": "^1.14.5"
+  }
+}
