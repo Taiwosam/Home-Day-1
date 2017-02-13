@@ -11,6 +11,36 @@ var paul = new Manager('Paul', 30000);
 
 describe("Tests for the Employee Class and its children", function() {
 
+  describe("Each constructor should be instances of Function and have Function as constructor", function() {
+    it("Expects a constructor to be instance of Function", function() {
+      expect(Artisan instanceof Function).toBeTruthy();
+      expect(Employee instanceof Function).toBeTruthy();
+      expect(Manager instanceof Function).toBeTruthy();
+      expect(Ceo instanceof Function).toBeTruthy();
+    });
+
+    it("Expects class.constructor to be Function", function() {
+      expect(Artisan.constructor).toBe(Function);
+      expect(Employee.constructor).toBe(Function);
+      expect(Manager.constructor).toBe(Function);
+      expect(Ceo.constructor).toBe(Function);
+    });
+  });
+
+  describe("The constructor of each child class' prototype should point to the child class", function() {
+    it("Expects Class.prototype.constructor to be Class", function() {
+      expect(Artisan.prototype.constructor).toBe(Artisan);
+      expect(Manager.prototype.constructor).toBe(Manager);
+      expect(Ceo.prototype.constructor).toBe(Ceo);
+    });
+
+    it("Expects the constructor of each instance to be as expected", function() {
+      expect(dodo.constructor).toBe(Artisan);
+      expect(ajanlekoko.constructor).toBe(Ceo);
+      expect(paul.constructor).toBe(Manager);
+    })
+  });
+
   describe("All instances should be of type object and be instances of their constructor", function() {
     it("typeof(instance) should equal 'object'", function() {
       expect( typeof(dodo) ).toEqual('object');
